@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Research Helper</title>
+  <link rel="stylesheet" href="popup.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="popup-container">
+    <!-- Header -->
+    <header class="popup-header">
+      <div class="logo">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+          <path d="M2 17l10 5 10-5"/>
+          <path d="M2 12l10 5 10-5"/>
+        </svg>
+        <span>AI Research Helper</span>
+      </div>
+      <div class="status-indicator" id="status-indicator">
+        <span class="status-dot"></span>
+        <span class="status-text">Checking...</span>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="popup-content">
+      <!-- Page Detection -->
+      <section class="detection-section" id="detection-section">
+        <div class="detection-card" id="detection-card">
+          <div class="detection-icon" id="detection-icon">📄</div>
+          <div class="detection-info">
+            <h3 id="page-type">Detecting page...</h3>
+            <p id="page-title">Loading...</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Quick Actions -->
+      <section class="actions-section">
+        <h4>Quick Actions</h4>
+        <div class="action-grid">
+          <button class="action-btn" id="btn-summarize">
+            <span class="action-icon">📝</span>
+            <span class="action-label">Summarize</span>
+          </button>
+          <button class="action-btn" id="btn-equations">
+            <span class="action-icon">🔢</span>
+            <span class="action-label">Equations</span>
+          </button>
+          <button class="action-btn" id="btn-keypoints">
+            <span class="action-icon">💡</span>
+            <span class="action-label">Key Points</span>
+          </button>
+          <button class="action-btn" id="btn-sidebar">
+            <span class="action-icon">📊</span>
+            <span class="action-label">Open Sidebar</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- Quick Q&A -->
+      <section class="qa-section">
+        <h4>Ask About This Paper</h4>
+        <div class="qa-input-group">
+          <input type="text" id="quick-question" placeholder="What is the main contribution?">
+          <button id="ask-btn">Ask</button>
+        </div>
+        <div class="qa-response" id="quick-response"></div>
+      </section>
+
+      <!-- Recent Papers -->
+      <section class="recent-section" id="recent-section">
+        <h4>Recent Papers</h4>
+        <div class="recent-list" id="recent-list">
+          <p class="empty-state">No papers analyzed yet</p>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="popup-footer">
+      <button class="settings-btn" id="settings-btn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="3"/>
+          <path d="M12 1v4m0 14v4M4.22 4.22l2.83 2.83m9.9 9.9l2.83 2.83M1 12h4m14 0h4M4.22 19.78l2.83-2.83m9.9-9.9l2.83-2.83"/>
+        </svg>
+        Settings
+      </button>
+      <span class="version">v1.0.0</span>
+    </footer>
+
+    <!-- Settings Modal -->
+    <div class="modal hidden" id="settings-modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Settings</h3>
+          <button class="modal-close" id="close-settings">&times;</button>
+        </div>
+        <div class="modal-body">
+          <div class="setting-group">
+            <label>API Mode</label>
+            <select id="api-mode">
+              <option value="hybrid">Hybrid (Recommended)</option>
+              <option value="local">Local Models Only</option>
+              <option value="api">API Only</option>
+            </select>
+          </div>
+          <div class="setting-group">
+            <label>Backend URL</label>
+            <input type="text" id="backend-url" value="http://localhost:8000">
+          </div>
+          <div class="setting-group">
+            <label>Auto-analyze on page load</label>
+            <label class="switch">
+              <input type="checkbox" id="auto-analyze">
+              <span class="slider"></span>
+            </label>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn-secondary" id="cancel-settings">Cancel</button>
+          <button class="btn-primary" id="save-settings">Save</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay hidden" id="loading">
+      <div class="spinner"></div>
+      <p>Processing...</p>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
